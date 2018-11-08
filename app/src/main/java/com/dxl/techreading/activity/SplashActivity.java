@@ -15,10 +15,6 @@ import butterknife.OnClick;
  */
 public class SplashActivity extends BaseActivity {
 
-    @BindView(R.id.btn_skip)
-    Button mBtnSkip;
-
-
     @Override
     protected int getContentViewLayoutID() {
         return R.layout.activity_splash;
