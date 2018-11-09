@@ -1,7 +1,9 @@
 package com.dxl.techreading.activity;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 
 import com.dxl.techreading.R;
@@ -15,31 +17,45 @@ import butterknife.OnClick;
  */
 public class SplashActivity extends BaseActivity {
 
+    @BindView(R.id.btn_skip)
+    Button btnSkip;
+
+    CountDownTimer timer;
+
     @Override
     protected int getContentViewLayoutID() {
         return R.layout.activity_splash;
     }
 
+
     @Override
     protected void initView() {
-        new Handler().postDelayed(new Runnable() {
+        timer = new CountDownTimer(4000, 1000) {
             @Override
-            public void run() {
+            public void onTick(long millisUntilFinished) {
+                long s = millisUntilFinished / 1000;
+                btnSkip.setText(s == 0 ? "跳过" : s +  "s 跳过");
+            }
+
+            @Override
+            public void onFinish() {
                 toMainActivity();
             }
-        }, 3000);
+        }.start();
     }
 
     boolean isIn = false;
 
     @OnClick(R.id.btn_skip)
     void toMainActivity() {
+        timer.cancel();
         if (isIn) {
             return;
         }
         isIn = true;
         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         finish();
     }
 

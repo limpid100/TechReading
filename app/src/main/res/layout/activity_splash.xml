@@ -24,6 +24,7 @@
         android:minWidth="0dp"
         android:minHeight="0dp"
         android:text="跳 过"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
