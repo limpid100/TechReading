@@ -34,21 +34,21 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        List<Fragment> fragments = new ArrayList<>();
-        for (String tabTitle : GlobalVariables.TAB_TITLES) {
-            Fragment e = TestFragment.newInstance(tabTitle);
-            if (tabTitle.equals("Android")) {
-                e = CategoryFragment.newInstance("Android");
-            }
-            fragments.add(e);
-
-        }
         TabViewPagerAdapter viewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
+
+        TestFragment testFragment = TestFragment.newInstance("");
+
+        CategoryFragment androidFragment = CategoryFragment.newInstance("Android");
+        CategoryFragment iOSFragment = CategoryFragment.newInstance("iOS");
+        CategoryFragment expandResourceFragment = CategoryFragment.newInstance("拓展资源");
+        CategoryFragment frontFragment = CategoryFragment.newInstance("前端");
+        CategoryFragment appFragment = CategoryFragment.newInstance("App");
+
         viewPagerAdapter.setTitles(Arrays.asList(GlobalVariables.TAB_TITLES));
-        viewPagerAdapter.setFragments(fragments);
+        viewPagerAdapter.addFragment(testFragment, androidFragment, iOSFragment, expandResourceFragment, frontFragment, appFragment);
         mViewPager.setAdapter(viewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(viewPagerAdapter.getCount());
+        mViewPager.setCurrentItem(1);
         mTabLayout.setupWithViewPager(mViewPager);
     }
-
-
 }

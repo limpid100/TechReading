@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dxl.techreading.R;
-import com.dxl.techreading.model.CategoryResult;
+import com.dxl.techreading.model.CategoryResult.ResultsBean;
 import com.dxl.techreading.util.DateUtil;
 
 import java.util.ArrayList;
@@ -22,12 +22,18 @@ import java.util.List;
  */
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.CategoryViewHolder> {
 
-    public void setCategoryResults(List<CategoryResult> categoryResults) {
+    private List<ResultsBean> mCategoryResults = new ArrayList<>();
+
+    public void setCategoryResults(List<ResultsBean> categoryResults) {
         mCategoryResults = categoryResults;
         notifyDataSetChanged();
     }
 
-    private List<CategoryResult> mCategoryResults = new ArrayList<>();
+    public void addCategoryResults(List<ResultsBean> categoryResults) {
+        mCategoryResults.addAll(categoryResults);
+        notifyDataSetChanged();
+    }
+
 
     private Context mContext;
 
@@ -43,11 +49,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
 
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
-        CategoryResult categoryResult = mCategoryResults.get(position);
-        holder.tvTitle.setText(categoryResult.getDesc());
-        holder.tvSource.setText(categoryResult.getSource());
-        holder.tvWho.setText(categoryResult.getWho());
-        holder.tvDate.setText(DateUtil.formatDateString(categoryResult.getPublishedAt()));
+        ResultsBean resultsBean = mCategoryResults.get(position);
+        holder.tvTitle.setText(resultsBean.getDesc());
+        holder.tvSource.setText(resultsBean.getSource());
+        holder.tvWho.setText(resultsBean.getWho());
+        holder.tvDate.setText(DateUtil.formatDateString(resultsBean.getPublishedAt()));
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class TabViewPagerAdapter extends FragmentStatePagerAdapter {
 
     public void setFragments(List<Fragment> fragments) {
         mFragments = fragments;
+    }
+
+    public void addFragment(Fragment... fragments) {
+        mFragments.addAll(Arrays.asList(fragments));
     }
 
     private List<Fragment> mFragments = new ArrayList<>();
