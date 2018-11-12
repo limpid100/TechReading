@@ -1,6 +1,8 @@
 package com.dxl.techreading.fragment;
 
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
@@ -56,6 +58,10 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
         title = getArguments().getString(CATEGORY_NAME);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        //添加分割线
+        DividerItemDecoration decor = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+//        decor.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.list_divider));
+        mRecyclerView.addItemDecoration(decor);
 
         recyclerAdapter = new CategoryRecyclerAdapter(getContext());
 

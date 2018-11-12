@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
 import com.dxl.techreading.model.CategoryResult.ResultsBean;
 import com.dxl.techreading.util.DateUtil;
@@ -54,6 +55,11 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
         holder.tvSource.setText(resultsBean.getSource());
         holder.tvWho.setText(resultsBean.getWho());
         holder.tvDate.setText(DateUtil.formatDateString(resultsBean.getPublishedAt()));
+        List<String> images = resultsBean.getImages();
+        if (images != null && images.size() > 0) {
+            Glide.with(mContext).load(images.get(0)).error(R.drawable.ic_default_image).into(holder.imageView);
+        }
+
     }
 
     @Override
