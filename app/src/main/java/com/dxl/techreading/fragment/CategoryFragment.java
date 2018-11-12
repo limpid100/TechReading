@@ -34,6 +34,7 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
      * 当前页面标题
      */
     private String title;
+
     CategoryRecyclerAdapter recyclerAdapter;
 
 
@@ -78,12 +79,12 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
     @Override
     public void setCategoryItems(List<ResultsBean> categoryItems) {
-        recyclerAdapter.setCategoryResults(categoryItems);
+        recyclerAdapter.setDatas(categoryItems);
     }
 
     @Override
     public void addCategoryItems(List<ResultsBean> categoryItems) {
-        recyclerAdapter.addCategoryResults(categoryItems);
+        recyclerAdapter.addDatas(categoryItems);
     }
 
     @Override
