@@ -1,7 +1,9 @@
 package com.dxl.techreading.adapter;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
@@ -17,8 +19,11 @@ import java.util.List;
  */
 public class CategoryRecyclerAdapter extends CommonRecyclerViewAdapter<ResultsBean> {
 
+    private Context mContext;
+
     public CategoryRecyclerAdapter(Context context) {
         super(context, R.layout.item_view_recycler);
+        mContext = context;
     }
 
     @Override
@@ -40,6 +45,13 @@ public class CategoryRecyclerAdapter extends CommonRecyclerViewAdapter<ResultsBe
                     .error(R.drawable.ic_default_image)
                     .into(imageView);
         }
+        holder.setOnClickListener(new ListenerWithPosition.OnClickWithPositionListener() {
+            @Override
+            public void onClick(View v, int position, Object holder) {
+                String desc = mDatas.get(position).getDesc();
+                Toast.makeText(mContext, desc, Toast.LENGTH_SHORT).show();
+            }
+        }, R.id.item_view);
     }
 
 }

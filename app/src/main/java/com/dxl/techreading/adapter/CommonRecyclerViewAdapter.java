@@ -20,7 +20,7 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter 
 
     private int mLayoutID;
     Context mContext;
-    private List<T> mDatas;
+    protected List<T> mDatas;
 
     public void setDatas(List<T> datas) {
         mDatas.clear();
@@ -50,7 +50,9 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof CommonRecyclerViewHolder) {
-            convert((CommonRecyclerViewHolder) holder, mDatas.get(position));
+            CommonRecyclerViewHolder commonRecyclerViewHolder = (CommonRecyclerViewHolder) holder;
+            commonRecyclerViewHolder.setPosition(position);
+            convert(commonRecyclerViewHolder, mDatas.get(position));
         }
     }
 

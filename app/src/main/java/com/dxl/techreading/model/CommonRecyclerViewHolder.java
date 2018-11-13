@@ -6,6 +6,8 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.TextView;
 
+import com.dxl.techreading.adapter.ListenerWithPosition;
+
 /**
  * @author du_xi
  * @date 2018/11/12
@@ -14,6 +16,12 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> mViews;
     private View convertView;
+
+    public void setPosition(int position) {
+        mPosition = position;
+    }
+
+    private int mPosition;
 
     public CommonRecyclerViewHolder(View itemView) {
         super(itemView);
@@ -34,6 +42,14 @@ public class CommonRecyclerViewHolder extends RecyclerView.ViewHolder {
         View view = getView(textViewID);
         if (view instanceof TextView) {
             ((TextView) view).setText(text);
+        }
+    }
+
+    public void setOnClickListener(ListenerWithPosition.OnClickWithPositionListener clickListener, @IdRes int... viewIds){
+        ListenerWithPosition listenerWithPosition = new ListenerWithPosition(mPosition, this);
+        listenerWithPosition.setClickWithPositionListener(clickListener);
+        for (int viewId : viewIds) {
+            getView(viewId).setOnClickListener(listenerWithPosition);
         }
     }
 
