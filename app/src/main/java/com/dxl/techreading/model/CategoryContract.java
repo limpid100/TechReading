@@ -17,10 +17,20 @@ public interface CategoryContract {
 
         void addCategoryItems(List<ResultsBean> categoryItems);
 
+        /**
+         * 加载出错，提示错误信息
+         * @param errorMessage 错误信息
+         */
         void showErrorMessage(String errorMessage);
+
+        /**
+         * 下拉刷新完成
+         * @param success 是否刷新成功
+         */
+        void refreshFinish(boolean success);
     }
 
     interface ICategoryPresenter extends BasePresenter {
-        void getCategoryItems();
+        void getCategoryItems(boolean refresh);
     }
 }

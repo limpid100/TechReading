@@ -2,6 +2,7 @@ package com.dxl.techreading.fragment;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +27,8 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+    @BindView(R.id.refresh_layout)
+    SwipeRefreshLayout mRefreshLayout;
 
     ICategoryPresenter mICategoryPresenter;
 
@@ -57,6 +60,16 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
         mICategoryPresenter = new CategoryPresenter(this);
 
         title = getArguments().getString(CATEGORY_NAME);
+
+        mRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
+
+        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mICategoryPresenter.getCategoryItems(true);
+
+            }
+        });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //添加分割线
@@ -90,6 +103,14 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
     @Override
     public void showErrorMessage(String errorMessage) {
         Toast.makeText(getContext(), "加载错误：错误信息 " + errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void refreshFinish(boolean success) {
+        mRefreshLayout.setRefreshing(false);
+        if (success) {
+            Toast.makeText(getContext(), "刷新成功~", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

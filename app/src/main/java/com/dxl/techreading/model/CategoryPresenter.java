@@ -19,7 +19,7 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
     }
 
     @Override
-    public void getCategoryItems() {
+    public void getCategoryItems(final boolean refresh) {
         subscription = NetWork.getGankApi().getCategoryDate(mICategoryView.getCategoryName(), 10, 1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -32,11 +32,19 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
                     @Override
                     public void onError(Throwable e) {
                         mICategoryView.showErrorMessage(e.getMessage());
+                        if (refresh) {
+                            mICategoryView.refreshFinish(false);
+                        }
                     }
 
                     @Override
                     public void onNext(CategoryResult categoryResult) {
-                        mICategoryView.addCategoryItems(categoryResult.getResults());
+                        if (refresh) {
+                            mICategoryView.setCategoryItems(categoryResult.getResults());
+                            mICategoryView.refreshFinish(true);
+                        } else {
+                            mICategoryView.addCategoryItems(categoryResult.getResults());
+                        }
                     }
                 });
 
@@ -44,7 +52,7 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
 
     @Override
     public void subscribe() {
-        getCategoryItems();
+        getCategoryItems(false);
     }
 
     @Override
