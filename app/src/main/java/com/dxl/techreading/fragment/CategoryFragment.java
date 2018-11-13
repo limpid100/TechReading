@@ -1,8 +1,7 @@
 package com.dxl.techreading.fragment;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +13,10 @@ import com.dxl.techreading.model.CategoryContract.ICategoryPresenter;
 import com.dxl.techreading.model.CategoryContract.ICategoryView;
 import com.dxl.techreading.model.CategoryPresenter;
 import com.dxl.techreading.model.CategoryResult.ResultsBean;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.List;
 
@@ -28,7 +31,7 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
-    SwipeRefreshLayout mRefreshLayout;
+    SmartRefreshLayout mRefreshLayout;
 
     ICategoryPresenter mICategoryPresenter;
 
@@ -61,20 +64,23 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
         title = getArguments().getString(CATEGORY_NAME);
 
-        mRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorAccent));
-
-        mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onRefresh() {
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 mICategoryPresenter.getCategoryItems(true);
+            }
+        });
 
+        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                mICategoryPresenter.getCategoryItems(false);
             }
         });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         //添加分割线
         DividerItemDecoration decor = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-//        decor.setDrawable(ContextCompat.getDrawable(getContext(), R.drawable.list_divider));
         mRecyclerView.addItemDecoration(decor);
 
         recyclerAdapter = new CategoryRecyclerAdapter(getContext());
@@ -107,10 +113,15 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
     @Override
     public void refreshFinish(boolean success) {
-        mRefreshLayout.setRefreshing(false);
+        mRefreshLayout.finishRefresh();
         if (success) {
             Toast.makeText(getContext(), "刷新成功~", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void loadMoreFinish(boolean success) {
+        mRefreshLayout.finishLoadMore();
     }
 
     @Override

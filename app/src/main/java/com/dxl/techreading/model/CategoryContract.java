@@ -28,6 +28,12 @@ public interface CategoryContract {
          * @param success 是否刷新成功
          */
         void refreshFinish(boolean success);
+
+        /**
+         * 上拉加载完成
+         * @param success 是否加载成功
+         */
+        void loadMoreFinish(boolean success);
     }
 
     interface ICategoryPresenter extends BasePresenter {
