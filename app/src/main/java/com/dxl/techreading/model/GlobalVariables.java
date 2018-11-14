@@ -168,5 +168,15 @@ public final class GlobalVariables {
     public static final String BASE_URL = "http://gank.io/api/data/";
     //#endregion
 
+    //#region 获取bing每日壁纸 https://blog.csdn.net/m0_37682004/article/details/82314055
+    //https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN
+    /*
+     * format（非必需） = js (一般使用这个，返回json格式) / xml（返回xml格式）
+     * idx  (非必需)   = 请求图片截止天数 0 今天 -1 截止中明天 （预准备的） 1 截止至昨天，类推（目前最多获取到7天前的图片）
+     * n （必需）	1-8 返回请求数量，目前最多一次获取8张
+     * mkt  （非必需） 地区 zh-CN...
+     */
+
+
 
 }
