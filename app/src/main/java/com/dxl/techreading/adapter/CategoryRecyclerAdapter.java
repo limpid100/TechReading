@@ -43,6 +43,7 @@ public class CategoryRecyclerAdapter
             Glide.with(mContext)
                     .load(images.get(0))
                     .error(R.drawable.ic_default_image)
+                    .placeholder(R.drawable.ic_default_image)
                     .into(imageView);
         }else {
             Glide.with(mContext)
