@@ -1,7 +1,7 @@
 package com.dxl.techreading.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 
 import com.dxl.techreading.R;
@@ -10,9 +10,7 @@ import com.dxl.techreading.fragment.CategoryFragment;
 import com.dxl.techreading.fragment.TestFragment;
 import com.dxl.techreading.model.GlobalVariables;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -50,5 +48,17 @@ public class MainActivity extends BaseActivity {
         mViewPager.setOffscreenPageLimit(viewPagerAdapter.getCount());
         mViewPager.setCurrentItem(1);
         mTabLayout.setupWithViewPager(mViewPager);
+    }
+
+    /**
+     * 实现返回时，不退出应用
+     */
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
     }
 }
