@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.dxl.techreading.R;
@@ -32,6 +34,8 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
     RecyclerView mRecyclerView;
     @BindView(R.id.refresh_layout)
     SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.progress_bar)
+    ProgressBar progress_bar;
 
     ICategoryPresenter mICategoryPresenter;
 
@@ -89,6 +93,14 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
         mICategoryPresenter.subscribe();
 
+    }
+
+    @Override
+    public void setProgress(boolean show) {
+        int visible = show ? View.VISIBLE : View.GONE;
+        if (progress_bar.getVisibility() != visible) {
+            progress_bar.setVisibility(visible);
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
 
     private CategoryContract.ICategoryView mICategoryView;
     private Subscription subscription;
-    private int mPage = 1;
+    private int mPage = 0;
 
     public CategoryPresenter(CategoryContract.ICategoryView iCategoryView) {
         mICategoryView = iCategoryView;
@@ -32,11 +32,12 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
                 .subscribe(new Subscriber<CategoryResult>() {
                     @Override
                     public void onCompleted() {
-
+                        mICategoryView.setProgress(false);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        mICategoryView.setProgress(false);
                         mICategoryView.showErrorMessage(e.getMessage());
                         if (refresh) {
                             mICategoryView.refreshFinish(false);
@@ -61,6 +62,7 @@ public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
 
     @Override
     public void subscribe() {
+        mICategoryView.setProgress(true);
         getCategoryItems(false);
     }
 
