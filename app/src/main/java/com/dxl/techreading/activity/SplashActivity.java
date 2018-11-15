@@ -17,6 +17,7 @@ import butterknife.OnClick;
 
 /**
  * 闪屏页，先展示默认图片，然后在线去随机获取必应每日图片，并开启倒计时
+ *
  * @author du_xi
  * @date 2018-11-7 19:49:25
  */
@@ -75,7 +76,7 @@ public class SplashActivity extends BaseActivity implements SplashConstract.ISpl
 
     @Override
     public void showBingPic(String url) {
-        Glide.with(this).load(url).placeholder(R.mipmap.splash_default).error(R.mipmap.splash_default).into(mSplashImageView);
+        Glide.with(this).load(url).centerCrop().placeholder(R.mipmap.splash_default).error(R.mipmap.splash_default).into(mSplashImageView);
         timer.start();
     }
 

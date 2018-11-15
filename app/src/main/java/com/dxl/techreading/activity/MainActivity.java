@@ -1,8 +1,14 @@
 package com.dxl.techreading.activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.TabViewPagerAdapter;
@@ -18,12 +24,16 @@ import butterknife.BindView;
  * @author du_xi
  * @date 2018/11/7
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.tab)
     TabLayout mTabLayout;
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
 
     @Override
     protected int getContentViewLayoutID() {
@@ -48,6 +58,7 @@ public class MainActivity extends BaseActivity {
         mViewPager.setOffscreenPageLimit(viewPagerAdapter.getCount());
         mViewPager.setCurrentItem(1);
         mTabLayout.setupWithViewPager(mViewPager);
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     /**
@@ -60,5 +71,26 @@ public class MainActivity extends BaseActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addCategory(Intent.CATEGORY_HOME);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                Toast.makeText(this, "home", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_about:
+                break;
+            case R.id.menu_feedback:
+                break;
+            case R.id.menu_setting:
+                break;
+            case R.id.menu_exit:
+                break;
+            default:
+                break;
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
