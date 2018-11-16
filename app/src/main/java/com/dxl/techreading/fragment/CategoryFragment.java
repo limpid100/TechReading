@@ -2,12 +2,12 @@ package com.dxl.techreading.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.CategoryRecyclerAdapter;
@@ -120,14 +120,20 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
     @Override
     public void showErrorMessage(String errorMessage) {
-        Toast.makeText(getContext(), "加载错误：错误信息 " + errorMessage, Toast.LENGTH_SHORT).show();
+        final Snackbar snackbar = Snackbar.make(mRecyclerView, "加载错误 Errrrr..", Snackbar.LENGTH_LONG);
+        snackbar.setAction("知道了", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        snackbar.dismiss();
+                    }
+                }).show();
     }
 
     @Override
     public void refreshFinish(boolean success) {
         mRefreshLayout.finishRefresh();
         if (success) {
-            Toast.makeText(getContext(), "刷新成功~", Toast.LENGTH_LONG).show();
+            Snackbar.make(mRecyclerView, "刷新成功~", Snackbar.LENGTH_SHORT).show();
         }
     }
 
