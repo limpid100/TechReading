@@ -115,11 +115,19 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.menu_setting:
                 break;
             case R.id.menu_exit:
+                exitApplication();
                 break;
             default:
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    /**
+     * 退出应用
+     */
+    private void exitApplication() {
+        android.os.Process.killProcess(android.os.Process.myPid());
     }
 }
