@@ -6,22 +6,22 @@
         android:id="@+id/g1">
         <item
             android:id="@+id/menu_home"
-            android:icon="@drawable/ic_home"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="主页" />
         <item
             android:id="@+id/menu_about"
-            android:icon="@drawable/ic_about"
+            android:icon="@drawable/ic_info_black_24dp"
             android:title="关于" />
         <item
             android:id="@+id/menu_feedback"
-            android:icon="@drawable/ic_fadeback"
+            android:icon="@drawable/ic_feedback_black_24dp"
             android:title="反馈" />
     </group>
     <group
         android:id="@+id/g2">
         <item
             android:id="@+id/menu_setting"
-            android:icon="@drawable/ic_setting_"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="设置" />
     </group>
     <item
