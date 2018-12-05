@@ -22,7 +22,7 @@ import butterknife.BindView;
  * @author dxl
  * @date 2018/11/14 8:29
  */
-public class WebViewActivity extends BaseActivity implements WebContract.IWebView {
+public class WebViewActivity extends BaseActivity<WebPresenter> implements WebContract.IWebView {
 
     @BindView(R.id.web_view)
     WebView mWebView;
@@ -40,7 +40,10 @@ public class WebViewActivity extends BaseActivity implements WebContract.IWebVie
         context.startActivity(intent);
     }
 
-    private WebContract.IWebPresenter mWebPresenter;
+    @Override
+    protected void beforeInit() {
+        mPresenter = new WebPresenter(this);
+    }
 
     @Override
     protected int getContentViewLayoutID() {
@@ -97,15 +100,8 @@ public class WebViewActivity extends BaseActivity implements WebContract.IWebVie
                 finish();
             }
         });
-        mWebPresenter = new WebPresenter(this);
-        mWebPresenter.subscribe();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mWebPresenter.unSubscribe();
-    }
 
     @Override
     public void onBackPressed() {

@@ -38,7 +38,7 @@ public class SplashPresenter implements SplashConstract.ISplashPresenter {
                     .build();
             sGankApi = retrofit.create(GankApi.class);
         }
-        sGankApi.getBingDailyPic("js", 0, 4, "zh-CN")
+        sGankApi.getBingDailyPic("js", 0, 8, "zh-CN")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BingDailyPic>() {

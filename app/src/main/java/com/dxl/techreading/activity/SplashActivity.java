@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * @author du_xi
  * @date 2018-11-7 19:49:25
  */
-public class SplashActivity extends BaseActivity implements SplashConstract.ISplashView {
+public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashConstract.ISplashView {
 
     @BindView(R.id.btn_skip)
     Button btnSkip;
@@ -30,17 +30,18 @@ public class SplashActivity extends BaseActivity implements SplashConstract.ISpl
 
     CountDownTimer timer;
 
-    private SplashConstract.ISplashPresenter mSplashPresenter;
-
     @Override
     protected int getContentViewLayoutID() {
         return R.layout.activity_splash;
     }
 
+    @Override
+    protected void beforeInit() {
+        mPresenter = new SplashPresenter(this);
+    }
 
     @Override
     protected void initView() {
-        mSplashPresenter = new SplashPresenter(this);
         timer = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -56,7 +57,6 @@ public class SplashActivity extends BaseActivity implements SplashConstract.ISpl
                 toMainActivity();
             }
         };
-        mSplashPresenter.subscribe();
     }
 
     boolean isIn = false;

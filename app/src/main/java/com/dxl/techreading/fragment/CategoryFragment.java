@@ -28,7 +28,7 @@ import butterknife.BindView;
  * @author dxl
  * @date 2018/11/9 13:36
  */
-public class CategoryFragment extends BaseFragment implements ICategoryView {
+public class CategoryFragment extends BaseFragment<CategoryPresenter> implements ICategoryView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
@@ -36,8 +36,6 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.progress_bar)
     ProgressBar progress_bar;
-
-    ICategoryPresenter mICategoryPresenter;
 
     public static final String CATEGORY_NAME = "category_name";
     /**
@@ -64,21 +62,21 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
     @Override
     protected void init() {
-        mICategoryPresenter = new CategoryPresenter(this);
+        mPresenter = new CategoryPresenter(this);
 
         title = getArguments().getString(CATEGORY_NAME);
 
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                mICategoryPresenter.getCategoryItems(true);
+                mPresenter.getCategoryItems(true);
             }
         });
 
         mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                mICategoryPresenter.getCategoryItems(false);
+                mPresenter.getCategoryItems(false);
             }
         });
 
@@ -91,7 +89,6 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
 
         mRecyclerView.setAdapter(recyclerAdapter);
 
-        mICategoryPresenter.subscribe();
 
     }
 
@@ -142,9 +139,4 @@ public class CategoryFragment extends BaseFragment implements ICategoryView {
         mRefreshLayout.finishLoadMore();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mICategoryPresenter.unSubscribe();
-    }
 }
