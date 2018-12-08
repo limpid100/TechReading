@@ -1,4 +1,4 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.adapter;
 
 import android.support.annotation.IdRes;
 import android.support.v7.widget.RecyclerView;

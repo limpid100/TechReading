@@ -1,4 +1,7 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.api;
+
+import com.dxl.techreading.bean.BingDailyPic;
+import com.dxl.techreading.bean.CategoryResult;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -25,5 +28,5 @@ public interface GankApi {
      * https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN
      */
     @GET("HPImageArchive.aspx")
-    Observable<BingDailyPic> getBingDailyPic(@Query("format") String format, @Query("idx") int idx,@Query("n") int n, @Query("mkt") String mkt);
+    Observable<BingDailyPic> getBingDailyPic(@Query("format") String format, @Query("idx") int idx, @Query("n") int n, @Query("mkt") String mkt);
 }

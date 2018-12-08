@@ -1,4 +1,4 @@
-package com.dxl.techreading.fragment;
+package com.dxl.techreading.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,10 +11,10 @@ import android.widget.ProgressBar;
 
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.CategoryRecyclerAdapter;
-import com.dxl.techreading.model.CategoryContract.ICategoryPresenter;
-import com.dxl.techreading.model.CategoryContract.ICategoryView;
-import com.dxl.techreading.model.CategoryPresenter;
-import com.dxl.techreading.model.CategoryResult.ResultsBean;
+import com.dxl.techreading.base.BaseFragment;
+import com.dxl.techreading.contract.CategoryContract.ICategoryView;
+import com.dxl.techreading.presenter.CategoryPresenter;
+import com.dxl.techreading.bean.CategoryResult.ResultsBean;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;

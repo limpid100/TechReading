@@ -1,8 +1,9 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.contract;
 
 import java.util.List;
 
-import com.dxl.techreading.model.CategoryResult.ResultsBean;
+import com.dxl.techreading.base.BasePresenter;
+import com.dxl.techreading.bean.CategoryResult.ResultsBean;
 
 /**
  * @author dxl

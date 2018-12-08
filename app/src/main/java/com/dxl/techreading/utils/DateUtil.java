@@ -1,4 +1,4 @@
-package com.dxl.techreading.util;
+package com.dxl.techreading.utils;
 
 import android.annotation.SuppressLint;
 

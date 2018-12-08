@@ -1,18 +1,14 @@
 package com.dxl.techreading.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
-import com.dxl.techreading.activity.WebViewActivity;
-import com.dxl.techreading.model.CategoryResult.ResultsBean;
-import com.dxl.techreading.model.CommonRecyclerViewHolder;
-import com.dxl.techreading.util.DateUtil;
+import com.dxl.techreading.view.WebViewActivity;
+import com.dxl.techreading.bean.CategoryResult.ResultsBean;
+import com.dxl.techreading.utils.DateUtil;
 
 import java.util.List;
 

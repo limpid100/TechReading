@@ -1,4 +1,6 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.utils;
+
+import com.dxl.techreading.api.GankApi;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;

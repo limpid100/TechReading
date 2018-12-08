@@ -1,7 +1,8 @@
-package com.dxl.techreading.activity;
+package com.dxl.techreading.view;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -9,8 +10,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
-import com.dxl.techreading.model.SplashConstract;
-import com.dxl.techreading.model.SplashPresenter;
+import com.dxl.techreading.base.BaseActivity;
+import com.dxl.techreading.contract.SplashConstract;
+import com.dxl.techreading.presenter.SplashPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -31,20 +33,23 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     CountDownTimer timer;
 
     @Override
+    protected SplashPresenter createPresenter() {
+        return new SplashPresenter();
+    }
+
+    @Override
     protected int getContentViewLayoutID() {
         return R.layout.activity_splash;
     }
 
-    @Override
-    protected void beforeInit() {
-        mPresenter = new SplashPresenter(this);
-    }
 
     @Override
     protected void initView() {
+        mPresenter.getImageUrl();
         timer = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
+                Log.e("dxl", millisUntilFinished + "");
                 long s = Math.round(millisUntilFinished / 1000.0);
                 if (btnSkip.getVisibility() != View.VISIBLE) {
                     btnSkip.setVisibility(View.VISIBLE);
@@ -54,9 +59,10 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
             @Override
             public void onFinish() {
+                Log.e("dxl", "finish");
                 toMainActivity();
             }
-        };
+        }.start();
     }
 
     boolean isIn = false;
@@ -77,12 +83,10 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     public void showBingPic(String url) {
         Glide.with(this).load(url).centerCrop().placeholder(R.mipmap.splash_default).error(R.mipmap.splash_default).into(mSplashImageView);
-        timer.start();
     }
 
     @Override
     public void failLoadPic(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
-        timer.start();
     }
 }

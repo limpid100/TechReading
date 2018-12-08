@@ -1,4 +1,4 @@
-package com.dxl.techreading.activity;
+package com.dxl.techreading.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,8 +13,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.dxl.techreading.R;
-import com.dxl.techreading.model.WebContract;
-import com.dxl.techreading.model.WebPresenter;
+import com.dxl.techreading.base.BaseActivity;
+import com.dxl.techreading.contract.WebContract;
+import com.dxl.techreading.presenter.WebPresenter;
 
 import butterknife.BindView;
 
@@ -40,9 +41,10 @@ public class WebViewActivity extends BaseActivity<WebPresenter> implements WebCo
         context.startActivity(intent);
     }
 
+
     @Override
-    protected void beforeInit() {
-        mPresenter = new WebPresenter(this);
+    protected WebPresenter createPresenter() {
+        return new WebPresenter();
     }
 
     @Override
@@ -100,6 +102,7 @@ public class WebViewActivity extends BaseActivity<WebPresenter> implements WebCo
                 finish();
             }
         });
+        mPresenter.load(getUrl());
     }
 
 

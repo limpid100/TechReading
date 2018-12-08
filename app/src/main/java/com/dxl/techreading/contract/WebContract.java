@@ -1,4 +1,6 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.contract;
+
+import com.dxl.techreading.view.IView;
 
 /**
  * @author dxl
@@ -6,7 +8,7 @@ package com.dxl.techreading.model;
  */
 public interface WebContract {
 
-    interface IWebView {
+    interface IWebView extends IView {
         void initWebView();
 
         String getUrl();
@@ -14,7 +16,7 @@ public interface WebContract {
         void loadUrl(String url);
     }
 
-    interface IWebPresenter extends BasePresenter {
-
+    interface IWebPresenter {
+        void load(String url);
     }
 }

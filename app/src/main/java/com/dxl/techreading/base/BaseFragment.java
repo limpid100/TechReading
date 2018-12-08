@@ -1,4 +1,4 @@
-package com.dxl.techreading.fragment;
+package com.dxl.techreading.base;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.dxl.techreading.model.BasePresenter;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

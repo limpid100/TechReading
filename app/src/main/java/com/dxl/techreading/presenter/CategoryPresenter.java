@@ -1,4 +1,8 @@
-package com.dxl.techreading.model;
+package com.dxl.techreading.presenter;
+
+import com.dxl.techreading.bean.CategoryResult;
+import com.dxl.techreading.contract.CategoryContract;
+import com.dxl.techreading.utils.NetWork;
 
 import rx.Subscriber;
 import rx.Subscription;

@@ -1,4 +1,4 @@
-package com.dxl.techreading.activity;
+package com.dxl.techreading.view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -7,16 +7,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.TabViewPagerAdapter;
-import com.dxl.techreading.fragment.CategoryFragment;
-import com.dxl.techreading.fragment.TestFragment;
+import com.dxl.techreading.base.BaseActivity;
 import com.dxl.techreading.model.GlobalVariables;
 
 import java.util.Arrays;

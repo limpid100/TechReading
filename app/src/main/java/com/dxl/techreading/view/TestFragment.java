@@ -1,4 +1,4 @@
-package com.dxl.techreading.fragment;
+package com.dxl.techreading.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

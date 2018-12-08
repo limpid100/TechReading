@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".view.SplashActivity"
             android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".view.MainActivity" />
         <activity
-            android:name=".activity.WebViewActivity"
-            android:parentActivityName=".activity.MainActivity" />
+            android:name=".view.WebViewActivity"
+            android:parentActivityName=".view.MainActivity" />
     </application>
 
 </manifest>
