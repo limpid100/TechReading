@@ -1,6 +1,5 @@
 package com.dxl.techreading.contract;
 
-import com.dxl.techreading.base.BasePresenter;
 import com.dxl.techreading.view.IView;
 
 /**

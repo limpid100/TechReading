@@ -1,9 +1,9 @@
 package com.dxl.techreading.contract;
 
-import java.util.List;
-
-import com.dxl.techreading.base.BasePresenter;
 import com.dxl.techreading.bean.CategoryResult.ResultsBean;
+import com.dxl.techreading.view.IView;
+
+import java.util.List;
 
 /**
  * @author dxl
@@ -11,7 +11,7 @@ import com.dxl.techreading.bean.CategoryResult.ResultsBean;
  */
 public interface CategoryContract {
 
-    interface ICategoryView {
+    interface ICategoryView extends IView {
         void setProgress(boolean show);
 
         String getCategoryName();
@@ -42,7 +42,7 @@ public interface CategoryContract {
         void loadMoreFinish(boolean success);
     }
 
-    interface ICategoryPresenter extends BasePresenter {
+    interface ICategoryPresenter {
         void getCategoryItems(boolean refresh);
     }
 }

@@ -2,6 +2,9 @@ package com.dxl.techreading.presenter;
 
 import com.dxl.techreading.bean.CategoryResult;
 import com.dxl.techreading.contract.CategoryContract;
+import com.dxl.techreading.inteface.Callback;
+import com.dxl.techreading.model.CategoryModel;
+import com.dxl.techreading.model.ICategoryModel;
 import com.dxl.techreading.utils.NetWork;
 
 import rx.Subscriber;
@@ -13,67 +16,47 @@ import rx.schedulers.Schedulers;
  * @author dxl
  * @date 2018/11/12 13:37
  */
-public class CategoryPresenter implements CategoryContract.ICategoryPresenter {
+public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryView> implements CategoryContract.ICategoryPresenter {
 
-    private CategoryContract.ICategoryView mICategoryView;
-    private Subscription subscription;
-    private int mPage = 0;
+    private ICategoryModel mCategoryModel;
 
-    public CategoryPresenter(CategoryContract.ICategoryView iCategoryView) {
-        mICategoryView = iCategoryView;
+    public CategoryPresenter() {
+        mCategoryModel = new CategoryModel();
     }
 
     @Override
     public void getCategoryItems(final boolean refresh) {
-        if (refresh) {
-            mPage = 1;
-        }else {
-            mPage++;
-        }
-        subscription = NetWork.getGankApi().getCategoryDate(mICategoryView.getCategoryName(), 10, mPage)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<CategoryResult>() {
-                    @Override
-                    public void onCompleted() {
-                        mICategoryView.setProgress(false);
-                    }
+        mCategoryModel.getCategoryItems(refresh, mView.getCategoryName(), new Callback<CategoryResult, String>(){
 
-                    @Override
-                    public void onError(Throwable e) {
-                        mICategoryView.setProgress(false);
-                        mICategoryView.showErrorMessage(e.getMessage());
-                        if (refresh) {
-                            mICategoryView.refreshFinish(false);
-                        }else {
-                            mICategoryView.loadMoreFinish(false);
-                        }
-                    }
+            @Override
+            public void onSuccess(CategoryResult categoryResult) {
+                mView.setProgress(false);
+                if (refresh) {
+                    mView.setCategoryItems(categoryResult.getResults());
+                    mView.refreshFinish(true);
+                } else {
+                    mView.addCategoryItems(categoryResult.getResults());
+                    mView.loadMoreFinish(true);
+                }
+            }
 
-                    @Override
-                    public void onNext(CategoryResult categoryResult) {
-                        if (refresh) {
-                            mICategoryView.setCategoryItems(categoryResult.getResults());
-                            mICategoryView.refreshFinish(true);
-                        } else {
-                            mICategoryView.addCategoryItems(categoryResult.getResults());
-                            mICategoryView.loadMoreFinish(true);
-                        }
-                    }
-                });
+            @Override
+            public void onFailure(String message) {
+                mView.setProgress(false);
+                mView.showErrorMessage(message);
+                if (refresh) {
+                    mView.refreshFinish(false);
+                }else {
+                    mView.loadMoreFinish(false);
+                }
+            }
+        });
 
     }
 
     @Override
-    public void subscribe() {
-        mICategoryView.setProgress(true);
-        getCategoryItems(false);
-    }
-
-    @Override
-    public void unSubscribe() {
-        if (!subscription.isUnsubscribed()) {
-            subscription.unsubscribe();
-        }
+    public void detachView() {
+        super.detachView();
+        mCategoryModel.unsubscribe();
     }
 }

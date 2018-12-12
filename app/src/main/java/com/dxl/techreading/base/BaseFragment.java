@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dxl.techreading.presenter.IPresenter;
+import com.dxl.techreading.view.IView;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -15,7 +18,7 @@ import butterknife.Unbinder;
  * @author dxl
  * @date 2018/11/9 13:31
  */
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends IPresenter> extends Fragment implements IView {
 
     protected T mPresenter;
 
@@ -37,10 +40,19 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mUnbinder = ButterKnife.bind(this, view);
+        initPresenter();
         init();
+    }
+
+    protected void initPresenter() {
+        mPresenter = createPresenter();
         if (mPresenter != null) {
-            mPresenter.subscribe();
+            mPresenter.attachView(this);
         }
+    }
+
+    protected T createPresenter(){
+        return null;
     }
 
     /**
@@ -58,7 +70,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (mPresenter != null) {
-            mPresenter.unSubscribe();
+            mPresenter.detachView();
         }
     }
 }

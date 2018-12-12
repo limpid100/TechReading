@@ -54,6 +54,10 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
         return fragment;
     }
 
+    @Override
+    protected CategoryPresenter createPresenter() {
+        return new CategoryPresenter();
+    }
 
     @Override
     protected int getContentViewId() {
@@ -62,9 +66,10 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
 
     @Override
     protected void init() {
-        mPresenter = new CategoryPresenter(this);
 
         title = getArguments().getString(CATEGORY_NAME);
+
+        mPresenter.getCategoryItems(false);
 
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
