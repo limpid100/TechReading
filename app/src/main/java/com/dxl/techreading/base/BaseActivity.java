@@ -9,6 +9,7 @@ import com.dxl.techreading.presenter.IPresenter;
 import com.dxl.techreading.view.IView;
 
 import butterknife.ButterKnife;
+import rx.Subscription;
 
 /**
  * @author du_xi
@@ -17,6 +18,8 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements IView {
 
     protected T mPresenter;
+
+    protected Subscription mSubscription;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +70,9 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         super.onDestroy();
         if (mPresenter != null) {
             mPresenter.detachView();
+        }
+        if (mSubscription != null && !mSubscription.isUnsubscribed()) {
+            mSubscription.unsubscribe();
         }
     }
 

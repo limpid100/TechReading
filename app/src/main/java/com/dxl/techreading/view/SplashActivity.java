@@ -1,8 +1,6 @@
 package com.dxl.techreading.view;
 
 import android.content.Intent;
-import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -14,8 +12,14 @@ import com.dxl.techreading.base.BaseActivity;
 import com.dxl.techreading.contract.SplashConstract;
 import com.dxl.techreading.presenter.SplashPresenter;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
 
 /**
  * 闪屏页，先展示默认图片，然后在线去随机获取必应每日图片，并开启倒计时
@@ -30,7 +34,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @BindView(R.id.iv_splash)
     ImageView mSplashImageView;
 
-    CountDownTimer timer;
+    //倒计时3秒
+    public static final int COUNT_DOWN = 3;
 
     @Override
     protected SplashPresenter createPresenter() {
@@ -46,30 +51,40 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     protected void initView() {
         mPresenter.getImageUrl();
-        timer = new CountDownTimer(4000, 1000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                Log.e("dxl", millisUntilFinished + "");
-                long s = Math.round(millisUntilFinished / 1000.0);
-                if (btnSkip.getVisibility() != View.VISIBLE) {
-                    btnSkip.setVisibility(View.VISIBLE);
-                }
-                btnSkip.setText("跳过 " + s);
-            }
+        //倒计时，也可以用CountDownTimer
+        mSubscription = Observable.interval(1, TimeUnit.SECONDS).take(COUNT_DOWN)
+                .map(new Func1<Long, Long>() {
+                    @Override
+                    public Long call(Long aLong) {
+                        return COUNT_DOWN - aLong;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Long>() {
+                    @Override
+                    public void onCompleted() {
+                        toMainActivity();
+                    }
 
-            @Override
-            public void onFinish() {
-                Log.e("dxl", "finish");
-                toMainActivity();
-            }
-        }.start();
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        if (btnSkip.getVisibility() != View.VISIBLE) {
+                            btnSkip.setVisibility(View.VISIBLE);
+                        }
+                        btnSkip.setText("跳过 " + aLong);
+                    }
+                });
     }
 
     boolean isIn = false;
 
     @OnClick(R.id.btn_skip)
     void toMainActivity() {
-        timer.cancel();
         if (isIn) {
             return;
         }
