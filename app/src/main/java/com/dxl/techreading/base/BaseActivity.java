@@ -29,7 +29,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTranslucentStatus();
+//        setTranslucentStatus();
         beforeInit();
         initPresenter();
         setContentView(getContentViewLayoutID());

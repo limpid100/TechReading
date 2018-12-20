@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +23,9 @@
         <activity
             android:name=".view.WebViewActivity"
             android:parentActivityName=".view.MainActivity" />
-        <activity android:name=".view.GuideActivity" >
+        <activity
+            android:name=".view.GuideActivity"
+            android:theme="@style/FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

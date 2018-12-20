@@ -1,6 +1,5 @@
 package com.dxl.techreading.view;
 
-import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -15,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.dxl.techreading.R;
 import com.dxl.techreading.base.BaseActivity;
+import com.dxl.techreading.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ import butterknife.OnClick;
  * 引导页
  * https://www.jianshu.com/p/adb21180862a
  * https://github.com/LRH1993/CustomViewPager
+ *
  * @author dxl
  * @date 2018/12/20 14:30
  */
@@ -48,6 +49,7 @@ public class GuideActivity extends BaseActivity {
      * 引导页面
      */
     private static final int[] GUIDE_LAYOUT = {R.layout.guide1, R.layout.guide2, R.layout.guide3};
+    private static final String FIRST_RUN = "firstRun";
 
     @Override
     protected int getContentViewLayoutID() {
@@ -56,11 +58,15 @@ public class GuideActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        initGuideView();
+        if (SPUtils.getBoolean(FIRST_RUN, true)) {
+            initGuideView();
+        } else {
+            btnGoClicked();
+        }
     }
 
 
-    void initGuideView(){
+    void initGuideView() {
         List<View> viewList = new ArrayList<>();
         LayoutInflater inflater = LayoutInflater.from(this);
         //小圆点属性
@@ -112,7 +118,8 @@ public class GuideActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_go)
-    void btnGoClicked(){
+    void btnGoClicked() {
+        SPUtils.put(FIRST_RUN, false);
         startActivity(SplashActivity.class);
         finish();
     }
