@@ -24,8 +24,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="dd" parent="TextAppearance.Design.Tab">
-
+    <style name="homeIconText">
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>
