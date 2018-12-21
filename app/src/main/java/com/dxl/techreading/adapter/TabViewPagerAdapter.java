@@ -49,6 +49,6 @@ public class TabViewPagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mTitles.get(position);
+        return mTitles.size() <= position ? "测试" : mTitles.get(position);
     }
 }

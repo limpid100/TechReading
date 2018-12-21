@@ -24,4 +24,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="dd" parent="TextAppearance.Design.Tab">
+
+    </style>
+
 </resources>
