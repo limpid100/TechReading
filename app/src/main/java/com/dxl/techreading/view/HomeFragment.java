@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.dxl.techreading.R;
 import com.dxl.techreading.base.BaseFragment;
 import com.dxl.techreading.customview.CycleViewPager;
-import com.dxl.techreading.customview.Info;
+import com.dxl.techreading.customview.ImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +34,16 @@ public class HomeFragment extends BaseFragment {
     /**
      * 模拟请求后得到的数据
      */
-    List<Info> mList = new ArrayList<>();
+    List<ImageInfo> mList = new ArrayList<>();
 
     /**
      * 初始化数据
      */
     private void initData() {
-        mList.add(new Info("标题1", "http://img2.3lian.com/2014/c7/25/d/40.jpg"));
-        mList.add(new Info("标题2", "http://img2.3lian.com/2014/c7/25/d/41.jpg"));
-        mList.add(new Info("标题3", "http://imgsrc.baidu.com/forum/pic/item/b64543a98226cffc8872e00cb9014a90f603ea30.jpg"));
-        mList.add(new Info("标题4", "http://imgsrc.baidu.com/forum/pic/item/261bee0a19d8bc3e6db92913828ba61eaad345d4.jpg"));
+        mList.add(new ImageInfo("标题1", "http://img2.3lian.com/2014/c7/25/d/40.jpg"));
+        mList.add(new ImageInfo("标题2", "http://img2.3lian.com/2014/c7/25/d/41.jpg"));
+        mList.add(new ImageInfo("标题3", "http://imgsrc.baidu.com/forum/pic/item/b64543a98226cffc8872e00cb9014a90f603ea30.jpg"));
+        mList.add(new ImageInfo("标题4", "http://imgsrc.baidu.com/forum/pic/item/261bee0a19d8bc3e6db92913828ba61eaad345d4.jpg"));
 
     }
     

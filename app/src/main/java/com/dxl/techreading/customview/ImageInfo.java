@@ -3,11 +3,11 @@ package com.dxl.techreading.customview;
 /**
  * Created by Gavin on 2016/8/31.
  */
-public class Info {
+public class ImageInfo {
     private String url;
     private String title;
 
-    public Info(String title, String url) {
+    public ImageInfo(String title, String url) {
         this.url = url;
         this.title = title;
     }
