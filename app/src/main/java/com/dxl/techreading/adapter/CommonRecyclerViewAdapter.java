@@ -14,11 +14,12 @@ import java.util.List;
  * @author du_xi
  * @date 2018/11/12
  */
-public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter {
+public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder> {
 
     private int mLayoutID;
-    Context mContext;
-    protected List<T> mDatas;
+    private Context mContext;
+    List<T> mDatas;
+    protected MuiltipleTypeSupport<T> mTypeSupport;
 
     public void setDatas(List<T> datas) {
         mDatas.clear();
@@ -40,18 +41,18 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter 
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CommonRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (mTypeSupport != null) {
+            mLayoutID = mTypeSupport.getLayoutId(viewType);
+        }
         View view = LayoutInflater.from(mContext).inflate(mLayoutID, parent, false);
         return new CommonRecyclerViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof CommonRecyclerViewHolder) {
-            CommonRecyclerViewHolder commonRecyclerViewHolder = (CommonRecyclerViewHolder) holder;
-            commonRecyclerViewHolder.setPosition(position);
-            convert(commonRecyclerViewHolder, mDatas.get(position));
-        }
+    public void onBindViewHolder(@NonNull CommonRecyclerViewHolder holder, int position) {
+        holder.setPosition(position);
+        convert(holder, mDatas.get(position));
     }
 
     @Override
@@ -59,5 +60,15 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter 
         return mDatas.size();
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (mTypeSupport != null) {
+            return mTypeSupport.getItemViewType(position, mDatas.get(position));
+        }
+        return super.getItemViewType(position);
+    }
+
     protected abstract void convert(CommonRecyclerViewHolder holder, T t);
+
+
 }
