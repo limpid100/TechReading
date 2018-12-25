@@ -7,7 +7,7 @@ import java.util.List;
  * @author dxl
  * @date 2018/11/12 8:17
  */
-public class CategoryResult {
+public class GankCategoryResult {
 
     private boolean error;
     private List<ResultsBean> results;

@@ -12,10 +12,10 @@ import android.widget.ProgressBar;
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.CategoryRecyclerAdapter;
 import com.dxl.techreading.base.BaseFragment;
-import com.dxl.techreading.contract.CategoryContract.ICategoryView;
-import com.dxl.techreading.customview.ImageInfo;
+import com.dxl.techreading.contract.GankCategoryContract.ICategoryView;
+import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.presenter.CategoryPresenter;
-import com.dxl.techreading.bean.CategoryResult.ResultsBean;
+import com.dxl.techreading.bean.GankCategoryResult.ResultsBean;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -112,13 +112,12 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
     }
 
     @Override
-    public void setCategoryItems(List<ResultsBean> categoryItems) {
-        recyclerAdapter.setDatas(categoryItems);
-    }
-
-    @Override
-    public void addCategoryItems(List<ResultsBean> categoryItems) {
-        recyclerAdapter.addDatas(categoryItems);
+    public void setGankCategoryItems(List<ResultsBean> categoryItems, boolean refresh) {
+        if (refresh) {
+            recyclerAdapter.setDatas(categoryItems);
+        }else {
+            recyclerAdapter.addDatas(categoryItems);
+        }
     }
 
     @Override

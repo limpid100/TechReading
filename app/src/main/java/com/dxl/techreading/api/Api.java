@@ -2,7 +2,7 @@ package com.dxl.techreading.api;
 
 import com.dxl.techreading.bean.Banner;
 import com.dxl.techreading.bean.BingDailyPic;
-import com.dxl.techreading.bean.CategoryResult;
+import com.dxl.techreading.bean.GankCategoryResult;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -22,7 +22,7 @@ public interface Api {
      * @return
      */
     @GET("data/{type}/{count}/{page}")
-    Observable<CategoryResult> getCategoryDate(@Path("type") String type, @Path("count") int count, @Path("page") int page);
+    Observable<GankCategoryResult> getCategoryDate(@Path("type") String type, @Path("count") int count, @Path("page") int page);
 
     /**
      * 获取必应每日图片

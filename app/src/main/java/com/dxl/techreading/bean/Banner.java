@@ -1,16 +1,14 @@
 package com.dxl.techreading.bean;
 
-import com.dxl.techreading.customview.CycleViewPager;
-
-import java.util.Date;
 import java.util.List;
 
 /**
+ * 首页banner
+ * 主要使用imagePath，url, title
  * @author dxl
  * @date 2018/12/25 11:28
  */
 public class Banner {
-
 
     private List<Data> data;
     private int errorcode;

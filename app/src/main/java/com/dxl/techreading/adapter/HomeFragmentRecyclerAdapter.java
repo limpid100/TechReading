@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
-import com.dxl.techreading.bean.CategoryResult;
+import com.dxl.techreading.bean.GankCategoryResult;
 import com.dxl.techreading.utils.DateUtil;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  * @author dxl
  * @date 2018/12/24 16:21
  */
-public class HomeFragmentRecyclerAdapter extends RecyclerArrayAdapter<CategoryResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener {
+public class HomeFragmentRecyclerAdapter extends RecyclerArrayAdapter<GankCategoryResult.ResultsBean> implements ListenerWithPosition.OnClickWithPositionListener {
 
     private Context mContext;
 
@@ -25,7 +25,7 @@ public class HomeFragmentRecyclerAdapter extends RecyclerArrayAdapter<CategoryRe
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, CategoryResult.ResultsBean resultsBean) {
+    protected void bindData(BaseViewHolder holder, GankCategoryResult.ResultsBean resultsBean) {
         holder.setText(R.id.tv_title, resultsBean.getDesc());
         holder.setText(R.id.tv_source, resultsBean.getSource());
         holder.setText(R.id.tv_who, resultsBean.getWho());

@@ -2,8 +2,8 @@ package com.dxl.techreading.model;
 
 import com.dxl.techreading.api.Api;
 import com.dxl.techreading.bean.Banner;
-import com.dxl.techreading.bean.CategoryResult;
-import com.dxl.techreading.customview.ImageInfo;
+import com.dxl.techreading.bean.GankCategoryResult;
+import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.inteface.Callback;
 import com.dxl.techreading.utils.NetWork;
 
@@ -40,7 +40,7 @@ public class CategoryModel implements ICategoryModel {
         mSubscription = NetWork.getApi().getCategoryDate(categoryName, 10, mPage)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<CategoryResult>() {
+                .subscribe(new Subscriber<GankCategoryResult>() {
                     @Override
                     public void onCompleted() {
                     }
@@ -51,8 +51,8 @@ public class CategoryModel implements ICategoryModel {
                     }
 
                     @Override
-                    public void onNext(CategoryResult categoryResult) {
-                        callback.onSuccess(categoryResult);
+                    public void onNext(GankCategoryResult gankCategoryResult) {
+                        callback.onSuccess(gankCategoryResult);
                     }
                 });
     }

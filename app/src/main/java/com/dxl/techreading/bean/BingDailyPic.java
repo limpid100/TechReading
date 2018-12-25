@@ -3,6 +3,7 @@ package com.dxl.techreading.bean;
 import java.util.List;
 
 /**
+ * 获取的bing每日图片
  * @author du_xi
  * @date 2018/11/14
  */

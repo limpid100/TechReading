@@ -1,4 +1,4 @@
-package com.dxl.techreading.customview;
+package com.dxl.techreading.bean;
 
 /**
  * Created by Gavin on 2016/8/31.

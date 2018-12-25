@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
+import com.dxl.techreading.bean.ImageInfo;
 
 import java.util.ArrayList;
 import java.util.List;

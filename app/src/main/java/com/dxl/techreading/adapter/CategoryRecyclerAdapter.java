@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
 import com.dxl.techreading.view.WebViewActivity;
-import com.dxl.techreading.bean.CategoryResult.ResultsBean;
+import com.dxl.techreading.bean.GankCategoryResult.ResultsBean;
 import com.dxl.techreading.utils.DateUtil;
 
 import java.util.List;

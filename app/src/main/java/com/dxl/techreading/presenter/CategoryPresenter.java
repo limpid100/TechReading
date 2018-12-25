@@ -1,8 +1,8 @@
 package com.dxl.techreading.presenter;
 
-import com.dxl.techreading.bean.CategoryResult;
-import com.dxl.techreading.contract.CategoryContract;
-import com.dxl.techreading.customview.ImageInfo;
+import com.dxl.techreading.bean.GankCategoryResult;
+import com.dxl.techreading.contract.GankCategoryContract;
+import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.inteface.Callback;
 import com.dxl.techreading.model.CategoryModel;
 import com.dxl.techreading.model.ICategoryModel;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author dxl
  * @date 2018/11/12 13:37
  */
-public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryView> implements CategoryContract.ICategoryPresenter {
+public class CategoryPresenter extends BasePresenter<GankCategoryContract.ICategoryView> implements GankCategoryContract.ICategoryPresenter {
 
     private ICategoryModel mCategoryModel;
 
@@ -23,16 +23,15 @@ public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryV
 
     @Override
     public void getCategoryItems(final boolean refresh) {
-        mCategoryModel.getCategoryItems(refresh, mView.getCategoryName(), new Callback<CategoryResult, String>(){
+        mCategoryModel.getCategoryItems(refresh, mView.getCategoryName(), new Callback<GankCategoryResult, String>() {
 
             @Override
-            public void onSuccess(CategoryResult categoryResult) {
+            public void onSuccess(GankCategoryResult gankCategoryResult) {
                 mView.setProgress(false);
+                mView.setGankCategoryItems(gankCategoryResult.getResults(), refresh);
                 if (refresh) {
-                    mView.setCategoryItems(categoryResult.getResults());
                     mView.refreshFinish(true);
                 } else {
-                    mView.addCategoryItems(categoryResult.getResults());
                     mView.loadMoreFinish(true);
                 }
             }
@@ -43,7 +42,7 @@ public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryV
                 mView.showErrorMessage(message);
                 if (refresh) {
                     mView.refreshFinish(false);
-                }else {
+                } else {
                     mView.loadMoreFinish(false);
                 }
             }
