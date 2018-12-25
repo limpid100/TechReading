@@ -1,5 +1,6 @@
 package com.dxl.techreading.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     protected T mPresenter;
 
     private Unbinder mUnbinder;
+
+    protected Context mContext;
 
     /**
      * 布局文件
@@ -72,5 +75,17 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
         if (mPresenter != null) {
             mPresenter.detachView();
         }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mContext = context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.mContext = null;
     }
 }

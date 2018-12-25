@@ -14,6 +14,7 @@ import java.util.List;
  * @author du_xi
  * @date 2018/11/12
  */
+@Deprecated
 public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewHolder> {
 
     private int mLayoutID;

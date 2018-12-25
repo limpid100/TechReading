@@ -17,6 +17,11 @@ public class ListenerWithPosition implements View.OnClickListener {
 
     private OnClickWithPositionListener mClickWithPositionListener;
 
+    public ListenerWithPosition(Object holder) {
+        this.mPosition = -1;
+        this.mHolder = holder;
+    }
+
     public ListenerWithPosition(int position, Object holder) {
         this.mPosition = position;
         this.mHolder = holder;

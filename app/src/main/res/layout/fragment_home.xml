@@ -4,63 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.dxl.techreading.customview.CycleViewPager
-        android:id="@+id/cycle_view"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp">
-
-        <TextView
-            style="@style/homeIconText"
-            android:drawableTop="@drawable/ic_home_first"
-            android:text="精选新闻" />
-
-        <TextView
-            style="@style/homeIconText"
-            android:drawableTop="@drawable/ic_home_second"
-            android:text="今日头条" />
-
-        <TextView
-            style="@style/homeIconText"
-            android:drawableTop="@drawable/ic_home_third"
-            android:text="天行热点" />
-
-        <TextView
-            style="@style/homeIconText"
-            android:drawableTop="@drawable/ic_home_four"
-            android:text="干货定制" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:padding="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:textColor="@color/redTab"
-            android:text="精选"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <View
-            android:layout_marginStart="10dp"
-            android:background="@color/redTab"
-            android:layout_width="10dp"
-            android:layout_height="25dp"/>
-
-        <TextView
-            android:layout_marginStart="10dp"
-            android:text="今日头条新闻"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

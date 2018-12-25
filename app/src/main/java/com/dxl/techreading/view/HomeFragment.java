@@ -1,8 +1,16 @@
 package com.dxl.techreading.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.dxl.techreading.R;
+import com.dxl.techreading.adapter.HomeFragmentRecyclerAdapter;
+import com.dxl.techreading.adapter.RecyclerArrayAdapter;
 import com.dxl.techreading.base.BaseFragment;
 import com.dxl.techreading.customview.CycleViewPager;
 import com.dxl.techreading.customview.ImageInfo;
@@ -18,8 +26,11 @@ import butterknife.BindView;
  */
 public class HomeFragment extends BaseFragment {
 
-    @BindView(R.id.cycle_view)
-    CycleViewPager mCycleViewPager;
+    @BindView(R.id.recycler_view)
+    RecyclerView mRecyclerView;
+
+//    @BindView(R.id.cycle_view)
+//    CycleViewPager mCycleViewPager;
 
     public static HomeFragment newInstance() {
 
@@ -55,6 +66,32 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void init() {
         initData();
+//        mCycleViewPager.setData(mList, null);
+        initView();
+    }
+
+    private void initView() {
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+        HomeFragmentRecyclerAdapter adapter = new HomeFragmentRecyclerAdapter(mContext);
+        adapter.setData(mList);
+        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                return LayoutInflater.from(mContext).inflate(R.layout.fragment_home_head, parent, false);
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+                initHeaderView(headerView);
+            }
+        });
+        mRecyclerView.setAdapter(adapter);
+    }
+
+
+    private void initHeaderView(View headerView) {
+        CycleViewPager mCycleViewPager = headerView.findViewById(R.id.cycle_view);
         mCycleViewPager.setData(mList, null);
     }
 }
