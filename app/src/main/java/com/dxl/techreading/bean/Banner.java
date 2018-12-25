@@ -47,85 +47,76 @@ public class Banner {
 
         private String desc;
         private int id;
-        private String imagepath;
-        private int isvisible;
+        private String imagePath;
+        private int isVisible;
         private int order;
         private String title;
         private int type;
         private String url;
 
-
-        public void setDesc(String desc) {
-            this.desc = desc;
-        }
-
         public String getDesc() {
             return desc;
         }
 
-
-        public void setId(int id) {
-            this.id = id;
+        public void setDesc(String desc) {
+            this.desc = desc;
         }
 
         public int getId() {
             return id;
         }
 
-
-        public void setImagepath(String imagepath) {
-            this.imagepath = imagepath;
+        public void setId(int id) {
+            this.id = id;
         }
 
-        public String getImagepath() {
-            return imagepath;
+        public String getImagePath() {
+            return imagePath;
         }
 
-
-        public void setIsvisible(int isvisible) {
-            this.isvisible = isvisible;
+        public void setImagePath(String imagePath) {
+            this.imagePath = imagePath;
         }
 
-        public int getIsvisible() {
-            return isvisible;
+        public int getIsVisible() {
+            return isVisible;
         }
 
-
-        public void setOrder(int order) {
-            this.order = order;
+        public void setIsVisible(int isVisible) {
+            this.isVisible = isVisible;
         }
 
         public int getOrder() {
             return order;
         }
 
-
-        public void setTitle(String title) {
-            this.title = title;
+        public void setOrder(int order) {
+            this.order = order;
         }
 
         public String getTitle() {
             return title;
         }
 
-
-        public void setType(int type) {
-            this.type = type;
+        public void setTitle(String title) {
+            this.title = title;
         }
 
         public int getType() {
             return type;
         }
 
-
-        public void setUrl(String url) {
-            this.url = url;
+        public void setType(int type) {
+            this.type = type;
         }
 
         public String getUrl() {
             return url;
         }
 
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 
 

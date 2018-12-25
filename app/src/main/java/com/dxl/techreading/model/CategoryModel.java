@@ -74,7 +74,7 @@ public class CategoryModel implements ICategoryModel {
                         List<ImageInfo> infoList = new ArrayList<>();
                         for (int i = 0; i < banner.getData().size(); i++) {
                             Banner.Data data = banner.getData().get(i);
-                            infoList.add(new ImageInfo(data.getTitle(), data.getImagepath()));
+                            infoList.add(new ImageInfo(data.getTitle(), data.getImagePath()));
                         }
                         return infoList;
                     }

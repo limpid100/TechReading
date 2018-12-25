@@ -80,7 +80,7 @@ public class HomeFragment extends BaseFragment<CategoryPresenter> implements Cat
 
     private void initView() {
         mPresenter.getBannerData();
-        mPresenter.getCategoryItems(false);
+        mPresenter.getCategoryItems(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
         adapter = new HomeFragmentRecyclerAdapter(mContext);
