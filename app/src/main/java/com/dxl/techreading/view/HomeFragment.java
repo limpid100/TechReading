@@ -66,7 +66,7 @@ public class HomeFragment extends BaseFragment<CategoryPresenter> implements Cat
         mList.add(new ImageInfo("", "http://imgsrc.baidu.com/forum/pic/item/261bee0a19d8bc3e6db92913828ba61eaad345d4.jpg"));
 
     }
-    
+
     @Override
     protected int getContentViewId() {
         return R.layout.fragment_home;
