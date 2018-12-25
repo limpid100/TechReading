@@ -1,6 +1,8 @@
 package com.dxl.techreading.contract;
 
+import com.dxl.techreading.bean.Banner;
 import com.dxl.techreading.bean.CategoryResult.ResultsBean;
+import com.dxl.techreading.customview.ImageInfo;
 import com.dxl.techreading.view.IView;
 
 import java.util.List;
@@ -40,9 +42,13 @@ public interface CategoryContract {
          * @param success 是否加载成功
          */
         void loadMoreFinish(boolean success);
+
+        void setBanner(List<ImageInfo> bannerList);
     }
 
     interface ICategoryPresenter {
         void getCategoryItems(boolean refresh);
+
+        void getBannerData();
     }
 }

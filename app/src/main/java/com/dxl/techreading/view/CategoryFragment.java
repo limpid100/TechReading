@@ -13,6 +13,7 @@ import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.CategoryRecyclerAdapter;
 import com.dxl.techreading.base.BaseFragment;
 import com.dxl.techreading.contract.CategoryContract.ICategoryView;
+import com.dxl.techreading.customview.ImageInfo;
 import com.dxl.techreading.presenter.CategoryPresenter;
 import com.dxl.techreading.bean.CategoryResult.ResultsBean;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -142,6 +143,11 @@ public class CategoryFragment extends BaseFragment<CategoryPresenter> implements
     @Override
     public void loadMoreFinish(boolean success) {
         mRefreshLayout.finishLoadMore();
+    }
+
+    @Override
+    public void setBanner(List<ImageInfo> bannerList) {
+
     }
 
 }

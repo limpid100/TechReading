@@ -10,6 +10,8 @@ public interface ICategoryModel extends IModel {
 
     void getCategoryItems(boolean refresh, String categoryName, Callback callback);
 
+    void getBannerData(Callback callback);
+
     void unsubscribe();
 
 }

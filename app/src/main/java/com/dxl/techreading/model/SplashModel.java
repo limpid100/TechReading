@@ -1,6 +1,6 @@
 package com.dxl.techreading.model;
 
-import com.dxl.techreading.api.GankApi;
+import com.dxl.techreading.api.Api;
 import com.dxl.techreading.bean.BingDailyPic;
 import com.dxl.techreading.inteface.Callback;
 
@@ -20,21 +20,21 @@ import rx.schedulers.Schedulers;
  */
 public class SplashModel implements ISplashModel {
 
-    private static GankApi sGankApi;
+    private static Api sApi;
     private static final String BASE_URL = "https://cn.bing.com";
 
     //https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN
 
     @Override
     public void getImageUrl(final Callback<String, String> callback) {
-        if (sGankApi == null) {
+        if (sApi == null) {
             Retrofit retrofit = new Retrofit.Builder().baseUrl("https://cn.bing.com/")
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            sGankApi = retrofit.create(GankApi.class);
+            sApi = retrofit.create(Api.class);
         }
-        sGankApi.getBingDailyPic("js", 0, 8, "zh-CN")
+        sApi.getBingDailyPic("js", 0, 8, "zh-CN")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<BingDailyPic>() {

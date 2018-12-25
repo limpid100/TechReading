@@ -2,15 +2,12 @@ package com.dxl.techreading.presenter;
 
 import com.dxl.techreading.bean.CategoryResult;
 import com.dxl.techreading.contract.CategoryContract;
+import com.dxl.techreading.customview.ImageInfo;
 import com.dxl.techreading.inteface.Callback;
 import com.dxl.techreading.model.CategoryModel;
 import com.dxl.techreading.model.ICategoryModel;
-import com.dxl.techreading.utils.NetWork;
 
-import rx.Subscriber;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import java.util.List;
 
 /**
  * @author dxl
@@ -52,6 +49,22 @@ public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryV
             }
         });
 
+    }
+
+    @Override
+    public void getBannerData() {
+        mCategoryModel.getBannerData(new Callback<List<ImageInfo>, String>() {
+            @Override
+            public void onSuccess(List<ImageInfo> data) {
+                mView.setBanner(data);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                mView.showErrorMessage(message);
+            }
+
+        });
     }
 
     @Override
