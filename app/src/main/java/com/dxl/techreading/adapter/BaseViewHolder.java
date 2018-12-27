@@ -13,10 +13,16 @@ import android.widget.TextView;
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> mViews;
+    private View mItemView;
 
     public BaseViewHolder(View itemView) {
         super(itemView);
+        mItemView = itemView;
         mViews = new SparseArray<>();
+    }
+
+    public View getView(){
+        return mItemView;
     }
 
     @SuppressWarnings("unchecked")

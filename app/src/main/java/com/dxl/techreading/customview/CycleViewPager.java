@@ -280,7 +280,7 @@ public class CycleViewPager extends FrameLayout {
         }
     }
 
-    interface ImageCycleViewListener {
+    public interface ImageCycleViewListener {
         void onImageClick(ImageInfo imageInfo, int position, View imageView);
     }
 
