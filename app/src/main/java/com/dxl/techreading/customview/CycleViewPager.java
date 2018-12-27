@@ -136,14 +136,24 @@ public class CycleViewPager extends FrameLayout {
     }
 
     public void setData(List<ImageInfo> list, ImageCycleViewListener listener) {
+        setData(list, listener, true);
+    }
+
+    /**
+     *
+     * @param list
+     * @param listener
+     * @param translucence 是否图片半透明，半透明可以使文字清晰
+     */
+    public void setData(List<ImageInfo> list, ImageCycleViewListener listener, boolean translucence) {
         mImageInfos = list;
         //先添加最后一个图片
-        mViews.add(getImageView(list.get(list.size() - 1).getUrl()));
+        mViews.add(getImageView(list.get(list.size() - 1).getUrl(), translucence));
         for (int i = 0; i < list.size(); i++) {
-            mViews.add(getImageView(list.get(i).getUrl()));
+            mViews.add(getImageView(list.get(i).getUrl(), translucence));
         }
         //最后添加第一个
-        mViews.add(getImageView(list.get(0).getUrl()));
+        mViews.add(getImageView(list.get(0).getUrl(), translucence));
 
         mImageCycleViewListener = listener;
 
@@ -211,7 +221,7 @@ public class CycleViewPager extends FrameLayout {
         }
     }
 
-    private View getImageView(String url) {
+    private View getImageView(String url, boolean translucence) {
         RelativeLayout rl = new RelativeLayout(mContext);
         ImageView iv = new ImageView(mContext);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(
@@ -221,10 +231,12 @@ public class CycleViewPager extends FrameLayout {
         iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
         Glide.with(mContext).load(url).into(iv);
         rl.addView(iv);
-        ImageView backGround = new ImageView(mContext);
-        backGround.setLayoutParams(params);
-        backGround.setBackgroundResource(R.color.cycle_image_bg);
-        rl.addView(backGround);
+        if (translucence) {
+            ImageView backGround = new ImageView(mContext);
+            backGround.setLayoutParams(params);
+            backGround.setBackgroundResource(R.color.cycle_image_bg);
+            rl.addView(backGround);
+        }
         return rl;
     }
 

@@ -54,7 +54,7 @@ public class HomeActivity extends BaseActivity {
         TabViewPagerAdapter viewPagerAdapter = new TabViewPagerAdapter(getSupportFragmentManager());
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance());
-        fragments.add(TestFragment.newInstance("title2"));
+        fragments.add(DataFragment.newInstance());
         fragments.add(TestFragment.newInstance("title3"));
         fragments.add(TestFragment.newInstance("title4"));
 

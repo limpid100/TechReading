@@ -1,7 +1,7 @@
 package com.dxl.techreading.presenter;
 
 import com.dxl.techreading.bean.GankCategoryResult;
-import com.dxl.techreading.contract.GankCategoryContract;
+import com.dxl.techreading.contract.CategoryContract;
 import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.inteface.Callback;
 import com.dxl.techreading.model.CategoryModel;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author dxl
  * @date 2018/11/12 13:37
  */
-public class CategoryPresenter extends BasePresenter<GankCategoryContract.ICategoryView> implements GankCategoryContract.ICategoryPresenter {
+public class CategoryPresenter extends BasePresenter<CategoryContract.ICategoryView> implements CategoryContract.ICategoryPresenter {
 
     private ICategoryModel mCategoryModel;
 

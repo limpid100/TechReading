@@ -10,7 +10,7 @@ import java.util.List;
  * @author dxl
  * @date 2018/11/12 13:30
  */
-public interface GankCategoryContract {
+public interface CategoryContract {
 
     interface ICategoryView extends IView {
         /**

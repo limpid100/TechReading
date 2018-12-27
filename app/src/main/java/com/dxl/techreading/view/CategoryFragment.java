@@ -12,7 +12,7 @@ import android.widget.ProgressBar;
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.CategoryRecyclerAdapter;
 import com.dxl.techreading.base.BaseFragment;
-import com.dxl.techreading.contract.GankCategoryContract.ICategoryView;
+import com.dxl.techreading.contract.CategoryContract.ICategoryView;
 import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.presenter.CategoryPresenter;
 import com.dxl.techreading.bean.GankCategoryResult.ResultsBean;

@@ -14,7 +14,7 @@ import com.dxl.techreading.adapter.HomeFragmentRecyclerAdapter;
 import com.dxl.techreading.adapter.RecyclerArrayAdapter;
 import com.dxl.techreading.base.BaseFragment;
 import com.dxl.techreading.bean.GankCategoryResult;
-import com.dxl.techreading.contract.GankCategoryContract;
+import com.dxl.techreading.contract.CategoryContract;
 import com.dxl.techreading.customview.CycleViewPager;
 import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.presenter.CategoryPresenter;
@@ -27,7 +27,7 @@ import butterknife.BindView;
  * @author dxl
  * @date 2018/12/21 16:15
  */
-public class HomeFragment extends BaseFragment<CategoryPresenter> implements GankCategoryContract.ICategoryView {
+public class HomeFragment extends BaseFragment<CategoryPresenter> implements CategoryContract.ICategoryView {
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
