@@ -12,6 +12,7 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.bumptech.glide.Glide;
 import com.dxl.techreading.R;
 import com.dxl.techreading.adapter.BaseViewHolder;
 import com.dxl.techreading.base.BaseDelegateAdapter;
@@ -111,5 +112,59 @@ public class DataPresenter extends BasePresenter<DataContract.IDataView> impleme
             }
         };
 
+    }
+
+    @Override
+    public BaseDelegateAdapter initTitleAdapter(final String title) {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        linearLayoutHelper.setBgColor(Color.WHITE);
+        linearLayoutHelper.setMargin(0, 10, 0, 0);
+
+        return new BaseDelegateAdapter(((DataFragment) mView).getContext(), linearLayoutHelper, 1, R.layout.base_view_title) {
+            @Override
+            public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+                holder.setText(R.id.tv_title, title);
+                holder.getView(R.id.tv_more).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mView.onMoreClicked(title);
+                    }
+                });
+            }
+        };
+    }
+
+    @Override
+    public BaseDelegateAdapter initList3Adapter() {
+        final Context context = ((DataFragment) mView).getContext();
+        GridLayoutHelper gridLayoutHelper = new GridLayoutHelper(3);
+        gridLayoutHelper.setWeights(new float[]{30, 40, 30});
+        gridLayoutHelper.setBgColor(Color.WHITE);
+        gridLayoutHelper.setMargin(0, 0, 0, 10);
+        gridLayoutHelper.setPadding(10, 10, 10, 10);
+        gridLayoutHelper.setHGap(5);
+        final String[] titles = context.getResources().getStringArray(R.array.find_list3_title);
+        TypedArray typedArray = context.getResources().obtainTypedArray(R.array.find_list3_image);
+        final List<Integer> images = new ArrayList<>();
+        for (int i = 0; i < titles.length; i++) {
+            int resourceId = typedArray.getResourceId(i, 0);
+            images.add(resourceId);
+        }
+        typedArray.recycle();
+
+        return new BaseDelegateAdapter(context, gridLayoutHelper, 3, R.layout.base_btn_title_view) {
+            @Override
+            public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+                final int positionFinal = position;
+                holder.setText(R.id.tv_title, titles[position]);
+                Glide.with(context).load(images.get(position)).into(((ImageView) holder.getView(R.id.image)));
+                holder.getView().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mView.onMoreClicked(titles[positionFinal]);
+                    }
+                });
+            }
+        };
     }
 }

@@ -56,10 +56,21 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
         BaseDelegateAdapter bannerAdapter = mPresenter.initBannerAdapter();
         delegateAdapter.addAdapter(bannerAdapter);
         /**
-         * 九宫格
+         * grid
          */
         BaseDelegateAdapter gridAdapter = mPresenter.initGridAdapter();
         delegateAdapter.addAdapter(gridAdapter);
+
+        /**
+         * douban share
+         */
+        BaseDelegateAdapter doubanAdapter = mPresenter.initTitleAdapter("豆瓣分享");
+        delegateAdapter.addAdapter(doubanAdapter);
+        /**
+         * douban 3 grid
+         */
+        BaseDelegateAdapter douban3GridAdapter = mPresenter.initList3Adapter();
+        delegateAdapter.addAdapter(douban3GridAdapter);
 
     }
 
@@ -81,6 +92,15 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
     @Override
     public void onGridItemClick(int position, String itemName) {
         Toast.makeText(mContext, itemName, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 点击查看更多
+     * @param title
+     */
+    @Override
+    public void onMoreClicked(String title) {
+        Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
     }
 
 

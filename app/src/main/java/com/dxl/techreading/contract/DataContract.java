@@ -19,6 +19,8 @@ public interface DataContract {
         void setBannerData(CycleViewPager cycleViewPager, List<ImageInfo> imageInfos);
 
         void onGridItemClick(int position, String itemName);
+
+        void onMoreClicked(String title);
     }
 
     interface IDataPresenter {
@@ -28,5 +30,9 @@ public interface DataContract {
         BaseDelegateAdapter initBannerAdapter();
 
         BaseDelegateAdapter initGridAdapter();
+
+        BaseDelegateAdapter initTitleAdapter(String title);
+
+        BaseDelegateAdapter initList3Adapter();
     }
 }

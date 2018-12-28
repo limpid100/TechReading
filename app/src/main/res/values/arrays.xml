@@ -22,4 +22,15 @@
         <item>知乎专栏</item>
         <item>微信精选</item>
     </string-array>
+    <string-array name="find_list3_title">
+        <item>豆瓣电影</item>
+        <item>豆瓣音乐</item>
+        <item>豆瓣读书</item>
+    </string-array>
+    <integer-array name="find_list3_image">
+        <item>@drawable/bg_small_autumn_tree_min</item>
+        <item>@drawable/bg_small_leaves_min</item>
+        <item>@drawable/bg_small_magnolia_trees_min</item>
+    </integer-array>
+
 </resources>
