@@ -1,6 +1,10 @@
 package com.dxl.techreading.model;
 
+import com.dxl.techreading.bean.GankCategoryResult;
+import com.dxl.techreading.bean.ImageInfo;
 import com.dxl.techreading.inteface.Callback;
+
+import java.util.List;
 
 /**
  * @author du_xi
@@ -8,9 +12,9 @@ import com.dxl.techreading.inteface.Callback;
  */
 public interface ICategoryModel extends IModel {
 
-    void getCategoryItems(boolean refresh, String categoryName, Callback callback);
+    void getCategoryItems(boolean refresh, String categoryName, Callback<GankCategoryResult, String> callback);
 
-    void getBannerData(Callback callback);
+    void getBannerData(Callback<List<ImageInfo>, String> callback);
 
     void unsubscribe();
 

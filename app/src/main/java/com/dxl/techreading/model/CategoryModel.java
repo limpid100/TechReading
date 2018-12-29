@@ -31,7 +31,7 @@ public class CategoryModel implements ICategoryModel {
     private static Api sApi;
 
     @Override
-    public void getCategoryItems(boolean refresh, String categoryName, final Callback callback) {
+    public void getCategoryItems(boolean refresh, String categoryName, final Callback<GankCategoryResult, String> callback) {
         if (refresh) {
             mPage = 1;
         } else {
@@ -58,7 +58,7 @@ public class CategoryModel implements ICategoryModel {
     }
 
     @Override
-    public void getBannerData(final Callback callback) {
+    public void getBannerData(final Callback<List<ImageInfo>, String> callback) {
         if (sApi == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl("http://www.wanandroid.com/")

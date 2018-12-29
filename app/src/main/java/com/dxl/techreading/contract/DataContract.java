@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.dxl.techreading.base.BaseDelegateAdapter;
 import com.dxl.techreading.bean.ImageInfo;
+import com.dxl.techreading.bean.WechatList;
 import com.dxl.techreading.customview.CycleViewPager;
 import com.dxl.techreading.view.IView;
 
@@ -21,6 +22,10 @@ public interface DataContract {
         void onGridItemClick(int position, String itemName);
 
         void onMoreClicked(String title);
+
+        void setList(WechatList wechatList);
+
+        void onListError(String errorMessage);
     }
 
     interface IDataPresenter {
@@ -34,5 +39,9 @@ public interface DataContract {
         BaseDelegateAdapter initTitleAdapter(String title);
 
         BaseDelegateAdapter initList3Adapter();
+
+        void getList();
+
+        BaseDelegateAdapter initWechatListAdapter();
     }
 }

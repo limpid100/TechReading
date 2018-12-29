@@ -3,6 +3,7 @@ package com.dxl.techreading.api;
 import com.dxl.techreading.bean.Banner;
 import com.dxl.techreading.bean.BingDailyPic;
 import com.dxl.techreading.bean.GankCategoryResult;
+import com.dxl.techreading.bean.WechatList;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -33,5 +34,11 @@ public interface Api {
 
     @GET("banner/json")
     Observable<Banner> getBannerData();
+
+    /**
+     * http://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("wxarticle/chapters/json")
+    Observable<WechatList> getWechatList();
 
 }

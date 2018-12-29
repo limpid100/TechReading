@@ -81,7 +81,7 @@ public class CycleViewPager extends FrameLayout {
             if (now - releaseTime > delay - 500) {
                 //满足条件，跳转下一页
                 mHandler.sendEmptyMessage(WHEEL);
-            }else {
+            } else {
                 //不满足条件，可能是用户手动操作了
                 mHandler.sendEmptyMessage(WHEEL_WAIT);
             }
@@ -140,7 +140,6 @@ public class CycleViewPager extends FrameLayout {
     }
 
     /**
-     *
      * @param list
      * @param listener
      * @param translucence 是否图片半透明，半透明可以使文字清晰
@@ -184,7 +183,7 @@ public class CycleViewPager extends FrameLayout {
                 mCurrentPosition = position;
                 if (position == 0) {
                     mCurrentPosition = mViews.size() - 2;
-                }else if (position == mViews.size() - 1) {
+                } else if (position == mViews.size() - 1) {
                     mCurrentPosition = 1;
                 }
                 setIndicator(mCurrentPosition - 1);
@@ -211,11 +210,13 @@ public class CycleViewPager extends FrameLayout {
     }
 
     private void setIndicator(int position) {
-        mTitleTextview.setText(mImageInfos.get(position).getTitle());
+        if (mImageInfos != null && mImageInfos.size() > position) {
+            mTitleTextview.setText(mImageInfos.get(position).getTitle());
+        }
         for (int i = 0; i < mIndicators.length; i++) {
             if (i == position) {
                 mIndicators[i].setBackgroundResource(R.drawable.dots_light);
-            }else {
+            } else {
                 mIndicators[i].setBackgroundResource(R.drawable.dots_gray);
             }
         }

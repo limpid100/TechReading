@@ -1,6 +1,8 @@
 package com.dxl.techreading.model;
 
 import com.dxl.techreading.bean.ImageInfo;
+import com.dxl.techreading.bean.WechatList;
+import com.dxl.techreading.inteface.Callback;
 
 import java.util.List;
 
@@ -11,4 +13,7 @@ public interface IDataModel extends IModel {
 
     List<ImageInfo> getBannerImage();
 
+    void getList(Callback<WechatList, String> callback);
+
+    void unSubscribe();
 }

@@ -9,6 +9,7 @@ import com.dxl.techreading.R;
 import com.dxl.techreading.base.BaseDelegateAdapter;
 import com.dxl.techreading.base.BaseFragment;
 import com.dxl.techreading.bean.ImageInfo;
+import com.dxl.techreading.bean.WechatList;
 import com.dxl.techreading.contract.DataContract;
 import com.dxl.techreading.customview.CycleViewPager;
 import com.dxl.techreading.presenter.DataPresenter;
@@ -27,6 +28,10 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
 
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
+
+    DelegateAdapter delegateAdapter;
+
+    BaseDelegateAdapter<WechatList.Data> wechatListAdapter;
 
     @Override
     protected int getContentViewId() {
@@ -48,7 +53,7 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
     }
 
     private void initRecyclerView() {
-        DelegateAdapter delegateAdapter = mPresenter.initRecyclerView(mRecyclerView);
+        delegateAdapter = mPresenter.initRecyclerView(mRecyclerView);
 
         /**
          * banner
@@ -71,6 +76,17 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
          */
         BaseDelegateAdapter douban3GridAdapter = mPresenter.initList3Adapter();
         delegateAdapter.addAdapter(douban3GridAdapter);
+
+        BaseDelegateAdapter weichatAdapter = mPresenter.initTitleAdapter("微信公众号");
+        delegateAdapter.addAdapter(weichatAdapter);
+        /**
+         * list
+         */
+        wechatListAdapter = mPresenter.initWechatListAdapter();
+        delegateAdapter.addAdapter(wechatListAdapter);
+
+        mPresenter.getList();
+
 
     }
 
@@ -101,6 +117,16 @@ public class DataFragment extends BaseFragment<DataPresenter> implements DataCon
     @Override
     public void onMoreClicked(String title) {
         Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setList(WechatList wechatList) {
+        wechatListAdapter.setDataList(wechatList.getData());
+    }
+
+    @Override
+    public void onListError(String errorMessage) {
+        Toast.makeText(mContext, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
 
