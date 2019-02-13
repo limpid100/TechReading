@@ -22,7 +22,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 
 /**
- * 闪屏页，先展示默认图片，然后在线去随机获取必应每日图片，并开启倒计时
+ * 闪屏页，先展示默认图片，然后在线去随机获取必应每日图片，并开启倒计时/
  *
  * @author du_xi
  * @date 2018-11-7 19:49:25
